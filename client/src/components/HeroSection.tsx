@@ -35,14 +35,12 @@ export default function HeroSection() {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      console.log("Searching for:", searchQuery);
-      // TODO: Implement search navigation
+      window.location.href = `/listings?search=${encodeURIComponent(searchQuery)}`;
     }
   };
 
   const handleCategoryClick = (category: string) => {
-    console.log("Category clicked:", category);
-    // TODO: Navigate to category page
+    window.location.href = `/listings?category=${encodeURIComponent(category.toLowerCase())}`;
   };
 
   return (

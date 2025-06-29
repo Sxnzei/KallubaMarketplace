@@ -109,8 +109,20 @@ Kalluba is a modern digital marketplace application built for trading premium ac
 
 ## Changelog
 
-Changelog:
-- June 29, 2025. Initial setup
+### Recent Changes
+- June 29, 2025: Complete marketplace implementation with:
+  - Full authentication system using Replit Auth
+  - Database schema with users, listings, orders, transactions, reviews
+  - Listings browsing page with search and filtering
+  - Individual listing detail pages with purchase functionality  
+  - Wallet management with deposit/withdrawal capabilities
+  - Responsive design with dark theme and Kalluba branding
+  - Sample data seeded for testing marketplace functionality
+  - Navigation system connecting all major pages
+  - Professional UI inspired by Z2U and Binance designs
+
+### Initial Setup
+- June 29, 2025: Project scaffolding and architecture setup
 
 ## User Preferences
 

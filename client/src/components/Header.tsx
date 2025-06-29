@@ -36,7 +36,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-300 hover:text-kalluba-gold transition-colors">Browse</a>
+            <a href="/listings" className="text-gray-300 hover:text-kalluba-gold transition-colors">Browse</a>
             <a href="#" className="text-gray-300 hover:text-kalluba-gold transition-colors">Sell</a>
             <a href="#" className="text-gray-300 hover:text-kalluba-gold transition-colors">Support</a>
           </nav>
@@ -44,10 +44,10 @@ export default function Header() {
           {/* User Actions */}
           <div className="flex items-center space-x-4">
             {/* Wallet Balance */}
-            <div className="hidden sm:flex items-center space-x-2 bg-kalluba-darker px-3 py-2 rounded-lg">
+            <a href="/wallet" className="hidden sm:flex items-center space-x-2 bg-kalluba-darker px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
               <Wallet className="text-kalluba-gold text-sm" size={16} />
               <span className="text-sm font-medium">${user?.walletBalance || "0.00"}</span>
-            </div>
+            </a>
             
             {/* Notifications */}
             <Button variant="ghost" size="sm" className="relative p-2 text-gray-400 hover:text-kalluba-gold">

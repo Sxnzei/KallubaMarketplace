@@ -33,8 +33,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
   const gradient = getCategoryGradient(listing.platform || "");
   
   const handleCardClick = () => {
-    console.log("Listing clicked:", listing.id);
-    // TODO: Navigate to listing detail page
+    window.location.href = `/listing/${listing.id}`;
   };
 
   const handleBuyClick = (e: React.MouseEvent) => {

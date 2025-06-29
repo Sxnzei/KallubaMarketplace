@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(220, 27%, 8%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(220, 20%, 15%);
+  --muted-foreground: hsl(215, 15%, 65%);
+  --popover: hsl(220, 27%, 12%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(220, 27%, 12%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(220, 20%, 20%);
+  --input: hsl(220, 20%, 20%);
+  --primary: hsl(45, 93%, 47%);
+  --primary-foreground: hsl(220, 27%, 8%);
+  --secondary: hsl(220, 20%, 15%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(220, 20%, 15%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(45, 93%, 47%);
+  --radius: 0.5rem;
+  
+  /* Kalluba specific colors */
+  --kalluba-navy: hsl(220, 27%, 8%);
+  --kalluba-purple: hsl(240, 32%, 16%);
+  --kalluba-gold: hsl(45, 93%, 47%);
+  --kalluba-blue: hsl(195, 100%, 50%);
+  --kalluba-dark: hsl(220, 25%, 12%);
+  --kalluba-darker: hsl(220, 20%, 18%);
+}
+
+.dark {
+  --background: hsl(220, 27%, 8%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(220, 20%, 15%);
+  --muted-foreground: hsl(215, 15%, 65%);
+  --popover: hsl(220, 27%, 12%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(220, 27%, 12%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(220, 20%, 20%);
+  --input: hsl(220, 20%, 20%);
+  --primary: hsl(45, 93%, 47%);
+  --primary-foreground: hsl(220, 27%, 8%);
+  --secondary: hsl(220, 20%, 15%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(220, 20%, 15%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(45, 93%, 47%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer utilities {
+  .bg-kalluba-navy {
+    background-color: var(--kalluba-navy);
+  }
+  
+  .bg-kalluba-purple {
+    background-color: var(--kalluba-purple);
+  }
+  
+  .bg-kalluba-gold {
+    background-color: var(--kalluba-gold);
+  }
+  
+  .bg-kalluba-blue {
+    background-color: var(--kalluba-blue);
+  }
+  
+  .bg-kalluba-dark {
+    background-color: var(--kalluba-dark);
+  }
+  
+  .bg-kalluba-darker {
+    background-color: var(--kalluba-darker);
+  }
+
+  .text-kalluba-navy {
+    color: var(--kalluba-navy);
+  }
+  
+  .text-kalluba-gold {
+    color: var(--kalluba-gold);
+  }
+  
+  .text-kalluba-blue {
+    color: var(--kalluba-blue);
+  }
+
+  .border-kalluba-darker {
+    border-color: var(--kalluba-darker);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, var(--kalluba-navy) 0%, var(--kalluba-purple) 50%, var(--kalluba-darker) 100%);
+  }
+
+  .bg-gradient-card {
+    background: linear-gradient(145deg, var(--kalluba-dark) 0%, var(--kalluba-darker) 100%);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(to right, var(--kalluba-gold), #facc15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(to right, var(--kalluba-blue), #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

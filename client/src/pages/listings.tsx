@@ -20,7 +20,19 @@ export default function Listings() {
 
   useEffect(() => {
     document.title = "Browse Marketplace - Kalluba | Digital Assets & Premium Accounts";
-  }, []);
+    
+    // Parse URL parameters for search and category
+    const params = new URLSearchParams(window.location.search);
+    const searchParam = params.get('search');
+    const categoryParam = params.get('category');
+    
+    if (searchParam) {
+      setSearchQuery(searchParam);
+    }
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [location]);
 
   const { data: categories } = useQuery({
     queryKey: ["/api/categories"],

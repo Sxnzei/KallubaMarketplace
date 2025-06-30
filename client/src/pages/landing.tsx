@@ -53,13 +53,28 @@ export default function Landing() {
                 type="text" 
                 placeholder="Search for accounts, subscriptions, gift cards and more..." 
                 className="w-full px-6 py-4 bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 rounded-xl text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-kalluba-gold focus:border-transparent"
-                disabled
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    const query = (e.target as HTMLInputElement).value;
+                    if (query.trim()) {
+                      window.location.href = `/listings?search=${encodeURIComponent(query)}`;
+                    }
+                  }
+                }}
               />
               <Button 
-                onClick={handleLogin}
+                onClick={() => {
+                  const input = document.querySelector('input[placeholder*="Search for accounts"]') as HTMLInputElement;
+                  const query = input?.value;
+                  if (query?.trim()) {
+                    window.location.href = `/listings?search=${encodeURIComponent(query)}`;
+                  } else {
+                    window.location.href = '/listings';
+                  }
+                }}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-kalluba-gold text-kalluba-navy hover:bg-yellow-400"
               >
-                Sign In to Search
+                Search
               </Button>
             </div>
           </div>

@@ -13,7 +13,7 @@ import {
 import { Gem, Wallet, Bell, Menu, ChevronDown, User, Settings, LogOut } from "lucide-react";
 
 export default function Header() {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
@@ -43,54 +43,75 @@ export default function Header() {
 
           {/* User Actions */}
           <div className="flex items-center space-x-4">
-            {/* Wallet Balance */}
-            <a href="/wallet" className="hidden sm:flex items-center space-x-2 bg-kalluba-darker px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
-              <Wallet className="text-kalluba-gold text-sm" size={16} />
-              <span className="text-sm font-medium">${user?.walletBalance || "0.00"}</span>
-            </a>
-            
-            {/* Notifications */}
-            <Button variant="ghost" size="sm" className="relative p-2 text-gray-400 hover:text-kalluba-gold">
-              <Bell size={16} />
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs"></span>
-            </Button>
-            
-            {/* Profile Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-2 cursor-pointer">
-                  <Avatar className="w-8 h-8">
-                    <AvatarImage src={user?.profileImageUrl || ""} alt="Profile" />
-                    <AvatarFallback className="bg-kalluba-gold text-kalluba-navy text-sm">
-                      {user?.firstName?.[0] || user?.email?.[0] || "U"}
-                    </AvatarFallback>
-                  </Avatar>
-                  <ChevronDown className="text-gray-400" size={12} />
+            {isAuthenticated ? (
+              <>
+                {/* Wallet Balance */}
+                <a href="/wallet" className="hidden sm:flex items-center space-x-2 bg-kalluba-darker px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                  <Wallet className="text-kalluba-gold text-sm" size={16} />
+                  <span className="text-sm font-medium">${user?.walletBalance || "0.00"}</span>
+                </a>
+                
+                {/* Notifications */}
+                <Button variant="ghost" size="sm" className="relative p-2 text-gray-400 hover:text-kalluba-gold">
+                  <Bell size={16} />
+                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs"></span>
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-kalluba-dark border-kalluba-darker">
-                <DropdownMenuItem className="text-gray-300 hover:text-white hover:bg-kalluba-darker">
-                  <User className="mr-2" size={16} />
-                  <span>Profile</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-gray-300 hover:text-white hover:bg-kalluba-darker">
-                  <Wallet className="mr-2" size={16} />
-                  <span>Wallet</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-gray-300 hover:text-white hover:bg-kalluba-darker">
-                  <Settings className="mr-2" size={16} />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator className="bg-kalluba-darker" />
-                <DropdownMenuItem 
-                  onClick={handleLogout}
-                  className="text-red-400 hover:text-red-300 hover:bg-kalluba-darker"
+                
+                {/* Profile Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="flex items-center space-x-2 cursor-pointer">
+                      <Avatar className="w-8 h-8">
+                        <AvatarImage src={user?.profileImageUrl || ""} alt="Profile" />
+                        <AvatarFallback className="bg-kalluba-gold text-kalluba-navy text-sm">
+                          {user?.firstName?.[0] || user?.email?.[0] || "U"}
+                        </AvatarFallback>
+                      </Avatar>
+                      <ChevronDown className="text-gray-400" size={12} />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56 bg-kalluba-dark border-kalluba-darker">
+                    <DropdownMenuItem className="text-gray-300 hover:text-white hover:bg-kalluba-darker">
+                      <User className="mr-2" size={16} />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="text-gray-300 hover:text-white hover:bg-kalluba-darker">
+                      <Wallet className="mr-2" size={16} />
+                      <span>Wallet</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="text-gray-300 hover:text-white hover:bg-kalluba-darker">
+                      <Settings className="mr-2" size={16} />
+                      <span>Settings</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator className="bg-kalluba-darker" />
+                    <DropdownMenuItem 
+                      onClick={handleLogout}
+                      className="text-red-400 hover:text-red-300 hover:bg-kalluba-darker"
+                    >
+                      <LogOut className="mr-2" size={16} />
+                      <span>Sign Out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <>
+                {/* Login/Signup for unauthenticated users */}
+                <Button 
+                  variant="ghost" 
+                  onClick={() => window.location.href = "/api/login"}
+                  className="text-gray-300 hover:text-kalluba-gold"
                 >
-                  <LogOut className="mr-2" size={16} />
-                  <span>Sign Out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  Sign In
+                </Button>
+                <Button 
+                  onClick={() => window.location.href = "/api/login"}
+                  className="bg-kalluba-gold text-kalluba-navy hover:bg-yellow-400 font-medium"
+                >
+                  Get Started
+                </Button>
+              </>
+            )}
 
             {/* Mobile Menu Button */}
             <Button 

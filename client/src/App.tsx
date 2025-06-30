@@ -16,16 +16,10 @@ function Router() {
 
   return (
     <Switch>
-      {isLoading || !isAuthenticated ? (
-        <Route path="/" component={Landing} />
-      ) : (
-        <>
-          <Route path="/" component={Home} />
-          <Route path="/listings" component={Listings} />
-          <Route path="/listing/:id" component={ListingDetail} />
-          <Route path="/wallet" component={Wallet} />
-        </>
-      )}
+      <Route path="/" component={isAuthenticated ? Home : Landing} />
+      <Route path="/listings" component={Listings} />
+      <Route path="/listing/:id" component={ListingDetail} />
+      <Route path="/wallet" component={Wallet} />
       <Route component={NotFound} />
     </Switch>
   );
